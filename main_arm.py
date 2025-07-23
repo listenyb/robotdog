@@ -14,7 +14,6 @@
 # logger.addHandler(console_handler)
 
 import sys
-print('----------------------')
 sys.path.append("/ar_data/z1_sdk/lib")
 import unitree_arm_interface
 import time
