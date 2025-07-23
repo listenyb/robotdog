@@ -277,9 +277,6 @@ def go_to():
     return JSONResponse(content={"code": 200, "msg": "ok"})
 
 
-
-
-
 #@app.post("/api/v1/robot/go_to")
 #def go_to(move: Movement):
 #    goal = PoseStamped()
@@ -310,8 +307,6 @@ def go_to():
 #    return JSONResponse(content={"code": 200, "msg": "ok"})
 
 print('DEBUG ================ 8 == ')
-
-#x = input('wait input....')
 
 
 @app.post("/api/v1/robot/stand")
