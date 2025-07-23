@@ -13,8 +13,15 @@
 # console_handler.setFormatter(formatter)
 # logger.addHandler(console_handler)
 
-import os
+import sys
+print('----------------------')
+sys.path.append("/ar_data/z1_sdk/lib")
+import unitree_arm_interface
+import time
+import numpy as np
+np.set_printoptions(precision=3, suppress=True)
 
+import os
 import rospy
 from geometry_msgs.msg import PoseStamped, Twist
 from nav_msgs.msg import Odometry
@@ -393,5 +400,23 @@ def move_right():
     print(f"Move: {ret}")
     return JSONResponse(content={"code": ret, "msg": "ok"})
 
+
+@app.post("/api/v1/robot_arm/arm_control")
+def robot_arm_control():
+    arm = unitree_arm_interface.ArmInterface(hasGripper=True)
+    armState = unitree_arm_interface.ArmFSMState
+    arm.loopOn()
+    time.sleep(0.5)
+    #model = arm._ctrlComp.armModel
+    print("q:", arm.q)
+    arm.labelRun("test")
+    time.sleep(1)
+    arm.labelRun("back1")
+    arm.labelRun("back2")
+    arm.labelRun("back3")
+    arm.backToStart()
+    arm.loopOff()
+    print(f"Control : {armState}")
+    return JSONResponse(content={"code": "200", "msg": "ok"})
 
 #rospy.spin()
