@@ -413,4 +413,3 @@ def robot_arm_control():
     print(f"Control : {armState}")
     return JSONResponse(content={"code": "200", "msg": "ok"})
 
-#rospy.spin()
